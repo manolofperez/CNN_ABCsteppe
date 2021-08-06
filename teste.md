@@ -14,9 +14,7 @@ insights from convolutional neural network-based demographic modeling.”
 library(abc)
 ```
 
->
-    
-Carregando pacotes exigidos: abc.data
+> Carregando pacotes exigidos: abc.data
 
 Carregando pacotes exigidos: nnet
 

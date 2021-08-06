@@ -14,23 +14,10 @@ insights from convolutional neural network-based demographic modeling.”
 library(abc)
 ```
 
-    ## Carregando pacotes exigidos: abc.data
+Carregando pacotes exigidos: abc.data
 
-    ## Carregando pacotes exigidos: nnet
+Carregando pacotes exigidos: nnet
 
-    ## Carregando pacotes exigidos: quantreg
+Carregando pacotes exigidos: quantreg
 
-    ## Carregando pacotes exigidos: SparseM
-
-    ## 
-    ## Attaching package: 'SparseM'
-
-    ## The following object is masked from 'package:base':
-    ## 
-    ##     backsolve
-
-    ## Carregando pacotes exigidos: MASS
-
-    ## Carregando pacotes exigidos: locfit
-
-    ## locfit 1.5-9.4    2020-03-24
+Carregando pacotes exigidos: SparseM

@@ -16,12 +16,12 @@ library(abc)
 
 ---
     
-    # Carregando pacotes exigidos: abc.data
+    Carregando pacotes exigidos: abc.data
 
-    # Carregando pacotes exigidos: nnet
+    Carregando pacotes exigidos: nnet
 
-    # Carregando pacotes exigidos: quantreg
+    Carregando pacotes exigidos: quantreg
 
-    # Carregando pacotes exigidos: SparseM
+    Carregando pacotes exigidos: SparseM
 
 ---

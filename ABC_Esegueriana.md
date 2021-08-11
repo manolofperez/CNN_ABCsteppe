@@ -7,7 +7,8 @@ From the manuscript Kirschner & Perez et al. “Congruent evolutionary
 responses of European steppe biota to late Quaternary climate change:
 insights from convolutional neural network-based demographic modeling.”
 
-### Load library and input files for model selection.
+### First we will perform model selection
+Load library and input files.
 ```{r}
 # Load the ABC library.
 library(abc)
@@ -24,19 +25,20 @@ emp<-apply(emp, 2, FUN = median)
 ```
 
 
-### Perform cross validation using the test set and different thresholds 
-to select the value with the highest accuracy.
+Perform cross validation using the test set and different thresholds to select the value with the highest accuracy.
 ```{r}
 cv.modsel <- cv4postpr(models, sust, nval=10, tol =c(.05,.01,.005,.002,.001), method="rejection")
 summary(cv.modsel)
 ```
 
+> Output:
+> ```
 > Confusion matrix based on 10 samples for each model.
 > 
 > $tol0.001
 >    13 15  9
 > 9   0  0 10
-> 13 10  0  0h
+> 13 10  0  0
 > 15  0 10  0
 > 
 > $tol0.002
@@ -95,34 +97,38 @@ summary(cv.modsel)
 > 9  0.9998 0.0000 0.0002
 > 13 0.0008 0.9927 0.0065
 > 15 0.0005 0.0088 0.9907
+> ```
 
-
-### Perform rejection with the empirical data and the selected threshold.
+Perform rejection with the empirical data and the selected threshold.
 ```{r}
 Rej.05<-postpr(emp, models, sust, tol = .05, method = "rejection")
 summary(Rej.05)
 ```
 
-> summary(NN.1)
-> Call: 
-> postpr(target = emp, index = models, sumstat = sust, tol = 0.05, 
->     method = "rejection")
-> Data:
->  postpr.out$values (1500 posterior samples)
-> Models a priori:
->  9, 13, 15
-> Models a posteriori:
->  9, 13, 15
-> 
-> Proportion of accepted simulations (rejection):
->  9 13 15 
->  0  0  1 
-> 
-> Bayes factors:
->      9  13  15
-> 9            0
-> 13           0
-> 15 Inf Inf   1
+`
+summary(NN.1)
+Call: 
+postpr(target = emp, index = models, sumstat = sust, tol = 0.05, method = "rejection")
+
+Data:
+ postpr.out$values (1500 posterior samples)
+
+Models a priori:
+ 9, 13, 15
+
+Models a posteriori:
+ 9, 13, 15
+
+Proportion of accepted simulations (rejection):
+ 9 13 15 
+ 0  0  1 
+
+Bayes factors:
+     9  13  15
+9            0
+13           0
+15 Inf Inf   1
+`
 
 ### Now we will use the CNN predictions from the selected model to estimate parameters.
 

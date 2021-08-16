@@ -1,1 +1,3 @@
 # CNN_ABCsteppe
+
+scripts from Kirschner et al. "Congruent evolutionary responses of European steppe biota to late Quaternary climate change: insights from convolutional neural network based demographic modeling" (https://www.researchsquare.com/article/rs-534143/latest ), to simulate and compare genetic datasets from five steppe species under three different demographic models. Data under the selected model for each species was also used to perform parameter estimation. Both model comparison and parameter estimation were achieved by training a CNN, form which prediction were then used as Summary Statistics (SuSt) for ABC.

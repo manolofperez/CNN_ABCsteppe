@@ -14,10 +14,10 @@ Load library and input files.
 library(abc)
 
 # The list of the generating model for each simulation in the test set.
-models<-scan("models.txt")
+models<-rep(1:3,each=5000)
 
 # The predictions made by the trained CNN for each simulation, which will be used as SuSt.
-sust<-read.table("testSet_ModelPredictions.txt")
+sust<-read.table("testSet_CalibratedModelPredictions.txt")
 
 # The average value of CNN predictions for the empirical data.
 emp<-read.table("Emp_ModelPredictions.txt")
@@ -35,67 +35,67 @@ summary(cv.modsel)
 > Confusion matrix based on 10 samples for each model.
 > 
 > $tol0.001
->    13 15  9
-> 9   0  0 10
-> 13 10  0  0
-> 15  0 10  0
+>    1  2  3
+> 1 10  0  0
+> 2  0 10  0
+> 3  0  0 10
 > 
 > $tol0.002
->    13 15  9
-> 9   0  0 10
-> 13 10  0  0
-> 15  0 10  0
+>    1  2  3
+> 1 10  0  0
+> 2  0 10  0
+> 3  0  0 10
 > 
 > $tol0.005
->    13 15  9
-> 9   0  0 10
-> 13 10  0  0
-> 15  0 10  0
+>    1  2  3
+> 1 10  0  0
+> 2  0 10  0
+> 3  0  0 10
 > 
 > $tol0.01
->    13 15  9
-> 9   0  0 10
-> 13 10  0  0
-> 15  0 10  0
+>    1  2  3
+> 1 10  0  0
+> 2  0 10  0
+> 3  0  0 10
 > 
 > $tol0.05
->    13 15  9
-> 9   0  0 10
-> 13 10  0  0
-> 15  0 10  0
+>    1  2  3
+> 1 10  0  0
+> 2  0 10  0
+> 3  0  0 10
 > 
 > 
 > Mean model posterior probabilities (rejection)
 > 
 > $tol0.001
->         9     13     15
-> 9  1.0000 0.0000 0.0000
-> 13 0.0000 0.9733 0.0267
-> 15 0.0033 0.0167 0.9800
+>   1      2      3
+> 1 1 0.0000 0.0000
+> 2 0 0.9933 0.0067
+> 3 0 0.0067 0.9933
 > 
 > $tol0.002
->         9     13     15
-> 9  1.0000 0.0000 0.0000
-> 13 0.0017 0.9783 0.0200
-> 15 0.0033 0.0200 0.9767
+>   1      2      3
+> 1 1 0.0000 0.0000
+> 2 0 0.9933 0.0067
+> 3 0 0.0033 0.9967
 > 
 > $tol0.005
->         9     13     15
-> 9  0.9993 0.0000 0.0007
-> 13 0.0020 0.9787 0.0193
-> 15 0.0027 0.0173 0.9800
+>   1      2      3
+> 1 1 0.0000 0.0000
+> 2 0 0.9933 0.0067
+> 3 0 0.0040 0.9960
 > 
 > $tol0.01
->         9     13     15
-> 9  0.9997 0.0000 0.0003
-> 13 0.0013 0.9813 0.0173
-> 15 0.0017 0.0170 0.9813
+>       1      2      3
+> 1 1e+00 0.0000 0.0000
+> 2 7e-04 0.9947 0.0047
+> 3 0e+00 0.0020 0.9980
 > 
 > $tol0.05
->         9     13     15
-> 9  0.9998 0.0000 0.0002
-> 13 0.0008 0.9927 0.0065
-> 15 0.0005 0.0088 0.9907
+>       1      2      3
+> 1 1e+00 0.0000 0.0000
+> 2 8e-04 0.9973 0.0019
+> 3 0e+00 0.0008 0.9992
 > ```
 
 Perform rejection with the empirical data and the selected threshold.
@@ -106,28 +106,25 @@ summary(Rej.05)
 
 > Output:
 > ```
-> summary(Rej.05)
 > Call: 
-> postpr(target = emp, index = models, sumstat = sust, tol = 0.05, method = "rejection")
-> 
+> postpr(target = emp, index = models, sumstat = sust, tol = 0.05, 
+>     method = "rejection")
 > Data:
->  postpr.out$values (1500 posterior samples)
-> 
+>  postpr.out$values (750 posterior samples)
 > Models a priori:
->  9, 13, 15
-> 
+>  1, 2, 3
 > Models a posteriori:
->  9, 13, 15
+>  1, 2, 3
 > 
 > Proportion of accepted simulations (rejection):
->  9 13 15 
->  0  0  1 
+> 1 2 3 
+> 0 0 1 
 > 
 > Bayes factors:
->      9  13  15
-> 9            0
-> 13           0
-> 15 Inf Inf   1
+>     1   2   3
+> 1           0
+> 2           0
+> 3 Inf Inf   1
 > ```
 
 ### Now we will use the CNN predictions from the selected model to estimate parameters.

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 ## in order to use this code you have to have ms installed on your computer
 ## ms can be freely downloaded from:
@@ -20,8 +20,8 @@ def ms2nparray(xfile):
 		L = g[i+4:i+nDNANsam+4]
 		q = []
 		for i in L:
-			i = [int(j) for j in list(i)]
-			i = np.array(i, dtype=np.int8)
+			i = i = [int(j) for j in list(i.decode('utf-8'))]
+			i = np.array(i)
 			q.append(i)
 		q = np.array(q)
 		q = q.astype("int8")
